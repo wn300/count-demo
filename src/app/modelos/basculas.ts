@@ -6,6 +6,7 @@ export interface Planilla {
     pesos: Pesos[]
 }
 export interface Pesos {
+    id:number,
     rango: string,
     canasta: number,
     peso: number,
