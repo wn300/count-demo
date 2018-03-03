@@ -4,7 +4,7 @@
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Avima S.A.S</a>
+    <a class="navbar-brand" href="#">Avima S.A</a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -26,228 +26,436 @@
   </div>
 </div>
 <div class="container bg-conten">
+
+  <div *ngIf="print" #pdf style="background-color: #FFFFFF" class="row">
+    <div class="col-11 text-center">
+      <h1>
+        Planilla Avima S.A
+      </h1>
+    </div>
+    <div class="col-12" *ngIf="bascula_uno" style="margin-left: 10%">
+      <table *ngIf="objetoPlanilla">
+        <tr>
+          <td colspan="4" style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Bascula 1
+            </b>
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black; width: 200px">
+            <b>
+              Conductor:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            {{conductor_uno}}
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            <b>
+              Vehiculo:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            {{vehiculo_uno}}
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black">
+            <b>
+              Temperatura:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black">
+            {{temperatura_uno}}
+          </td>
+          <td style="border: 1px solid black; color:black">
+            <b>
+              Cliente:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black">
+            {{cliente_uno}}
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Rango
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Canasta
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Peso
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Cantidad
+            </b>
+          </td>
+        </tr>
+        <tr *ngFor="let peso of objetoPlanilla[0].pesos">
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.rango}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.canasta| number : '1.2-2'}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.peso| number : '1.2-2'}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.cantidad| number : '1.2-2'}}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="border: 1px solid black; color:black; text-align: right">
+            <b>
+              Peso Total:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            <b>
+              {{total_uno| number : '1.2-2'}} Kg
+            </b>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-12" *ngIf="!bascula_uno" style="margin-left: 10%">
+      <table *ngIf="objetoPlanillaDos">
+        <tr>
+          <td colspan="4" style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Bascula 2
+            </b>
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black; width: 200px">
+            <b>
+              Conductor:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            {{conductor_dos}}
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            <b>
+              Vehiculo:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black ; width: 200px">
+            {{vehiculo_dos}}
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black">
+            <b>
+              Temperatura:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black">
+            {{temperatura_dos}}
+          </td>
+          <td style="border: 1px solid black; color:black">
+            <b>
+              Cliente:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black">
+            {{cliente_dos}}
+          </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Rango
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Canasta
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Peso
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: center">
+            <b>
+              Cantidad
+            </b>
+          </td>
+        </tr>
+        <tr *ngFor="let peso of objetoPlanillaDos[0].pesos">
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.rango}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.canasta| number : '1.2-2'}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.peso| number : '1.2-2'}}
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            {{peso.cantidad| number : '1.2-2'}}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="border: 1px solid black; color:black; text-align: right">
+            <b>
+              Peso Total:
+            </b>
+          </td>
+          <td style="border: 1px solid black; color:black; text-align: left">
+            <b>
+              {{total_dos| number : '1.2-2'}} Kg
+            </b>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="print" class="row">
+    <div class="col-12 text-center">
+      <h5 style="color: red">
+          Exportando a PDF...
+      </h5>
+    </div>
+  </div>
   <!-- //1 -->
-  <div class="row" *ngIf="bascula_uno" style="margin-top: 15px">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-md-4 col-3">Conductor:</label>
-            <div class="col-md-8 col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
-              />
+  <div *ngIf="!print">
+    <div class="row" *ngIf="bascula_uno" style="margin-top: 15px">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-4 col-3">Conductor:</label>
+              <div class="col-md-8 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <div class="form-group row">
+              <label class="col-3">Veh:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <div class="form-group row">
+              <label class="col-3">Temp:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-3">Cliente:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-2">
-          <div class="form-group row">
-            <label class="col-3">Veh:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
-              />
+      </div>
+      <div class="col-12" *ngIf="rango_for_uno">
+        <div class="table-responsibe">
+          <table class="table table-striped table-hover table-sm">
+            <thead class="thead-inverse">
+              <tr>
+                <th class="text-center">Rango</th>
+                <th class="text-center">Canasta</th>
+                <th class="text-center">Peso</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="objetoPlanilla">
+              <tr *ngFor="let peso of objetoPlanilla[0].pesos">
+                <td>{{peso.rango}}</td>
+                <td>{{peso.canasta| number : '1.2-2'}}</td>
+                <td>{{peso.peso| number : '1.2-2'}}</td>
+                <td>{{peso.cantidad| number : '1.2-2'}}</td>
+                <td class="text-center">
+                  <input type="checkbox" (click)="eliminarPesoUno(peso)" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <select class="form-control form-control-sm" [(ngModel)]="rango_uno" (change)="validacionDetallesUno()">
+                    <option value="">Seleccione</option>
+                    <option value="Rango 16">Rango 16</option>
+                    <option value="Rango 20">Rango 20</option>
+                    <option value="Rango 22">Rango 22</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_uno" (blur)="validacionDetallesUno()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_uno" (blur)="validacionDetallesUno()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_uno" (blur)="validacionDetallesUno()" />
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" disabled/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="rango_for_uno">
+        <div class="row justify-content-end">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-4 col-3">Peso Total:</label>
+              <div class="col-md-8 col-9 text-center">
+                <h3>{{total_uno| number : '1.2-2'}} Kg</h3>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-2">
-          <div class="form-group row">
-            <label class="col-3">Temp:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-3">Cliente:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
-              />
+      </div>
+      <div class="col-12" *ngIf="rango_for_uno">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-7 col-12">
+            <div class="btn btn-block btn-sm btn-danger" (click)="pdfUno()">
+              PDF
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12" *ngIf="rango_for_uno">
-      <div class="table-responsibe">
-        <table class="table table-striped table-hover table-sm">
-          <thead class="thead-inverse">
-            <tr>
-              <th class="text-center">Rango</th>
-              <th class="text-center">Canasta</th>
-              <th class="text-center">Peso</th>
-              <th class="text-center">Cantidad</th>
-              <th class="text-center">Eliminar</th>
-            </tr>
-          </thead>
-          <tbody *ngIf="objetoPlanilla">
-            <tr *ngFor="let peso of objetoPlanilla[0].pesos">
-              <td>{{peso.rango}}</td>
-              <td>{{peso.canasta| number : '1.2-2'}}</td>
-              <td>{{peso.peso| number : '1.2-2'}}</td>
-              <td>{{peso.cantidad| number : '1.2-2'}}</td>
-              <td class="text-center">
-                <input type="checkbox" (click)="eliminarPesoUno(peso)" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <select class="form-control form-control-sm" [(ngModel)]="rango_uno" (change)="validacionDetallesUno()">
-                  <option value="">Seleccione</option>
-                  <option value="Rango 16">Rango 16</option>
-                  <option value="Rango 20">Rango 20</option>
-                  <option value="Rango 22">Rango 22</option>
-                </select>
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_uno" (blur)="validacionDetallesUno()" />
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_uno" (blur)="validacionDetallesUno()" />
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_uno" (blur)="validacionDetallesUno()" />
-              </td>
-              <td class="text-center">
-                <input type="checkbox" disabled/>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-12" *ngIf="rango_for_uno">
-      <div class="row justify-content-end">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-md-4 col-3">Peso Total:</label>
-            <div class="col-md-8 col-9 text-center">
-              <h3>{{total_uno| number : '1.2-2'}} Kg</h3>
+    <!-- //2 -->
+    <div class="row" *ngIf="!bascula_uno" style="margin-top: 15px">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-4 col-3">Conductor:</label>
+              <div class="col-md-8 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <div class="form-group row">
+              <label class="col-3">Veh:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2">
+            <div class="form-group row">
+              <label class="col-3">Temp:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-3">Cliente:</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12" *ngIf="rango_for_uno">
-      <div class="row justify-content-center">
-        <div class="col-lg-3 col-md-7 col-12">
-          <div class="btn btn-block btn-sm btn-primary">
-            Guardar
+      <div class="col-12" *ngIf="rango_for_dos">
+        <div class="table-responsibe">
+          <table class="table table-striped table-hover table-sm">
+            <thead class="thead-inverse">
+              <tr>
+                <th class="text-center">Rango</th>
+                <th class="text-center">Canasta</th>
+                <th class="text-center">Peso</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="objetoPlanilla">
+              <tr *ngFor="let peso of objetoPlanillaDos[0].pesos">
+                <td>{{peso.rango}}</td>
+                <td>{{peso.canasta| number : '1.2-2'}}</td>
+                <td>{{peso.peso| number : '1.2-2'}}</td>
+                <td>{{peso.cantidad| number : '1.2-2'}}</td>
+                <td class="text-center">
+                  <input type="checkbox" (click)="eliminarPesoDos(peso)" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <select class="form-control form-control-sm" [(ngModel)]="rango_dos" (change)="validacionDetallesDos()">
+                    <option value="">Seleccione</option>
+                    <option value="Rango 16">Rango 16</option>
+                    <option value="Rango 20">Rango 20</option>
+                    <option value="Rango 22">Rango 22</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_dos" (blur)="validacionDetallesDos()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_dos" (blur)="validacionDetallesDos()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_dos" (blur)="validacionDetallesDos()" />
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" disabled/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="rango_for_dos">
+        <div class="row justify-content-end">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-4 col-3">Peso Total:</label>
+              <div class="col-md-8 col-9 text-center">
+                <h3>{{total_dos| number : '1.2-2'}} Kg</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="rango_for_dos">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-7 col-12">
+            <div class="btn btn-block btn-sm btn-danger" (click)="pdfDos()">
+              PDF
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- //2 -->
-  <div class="row" *ngIf="!bascula_uno" style="margin-top: 15px">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-md-4 col-3">Conductor:</label>
-            <div class="col-md-8 col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-2">
-          <div class="form-group row">
-            <label class="col-3">Veh:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-2">
-          <div class="form-group row">
-            <label class="col-3">Temp:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-3">Cliente:</label>
-            <div class="col-9">
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12" *ngIf="rango_for_dos">
-      <div class="table-responsibe">
-        <table class="table table-striped table-hover table-sm">
-          <thead class="thead-inverse">
-            <tr>
-              <th class="text-center">Rango</th>
-              <th class="text-center">Canasta</th>
-              <th class="text-center">Peso</th>
-              <th class="text-center">Cantidad</th>
-              <th class="text-center">Eliminar</th>
-            </tr>
-          </thead>
-          <tbody *ngIf="objetoPlanilla">
-            <tr *ngFor="let peso of objetoPlanillaDos[0].pesos">
-              <td>{{peso.rango}}</td>
-              <td>{{peso.canasta| number : '1.2-2'}}</td>
-              <td>{{peso.peso| number : '1.2-2'}}</td>
-              <td>{{peso.cantidad| number : '1.2-2'}}</td>
-              <td class="text-center">
-                <input type="checkbox" (click)="eliminarPesoDos(peso)" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <select class="form-control form-control-sm" [(ngModel)]="rango_dos" (change)="validacionDetallesDos()">
-                  <option value="">Seleccione</option>
-                  <option value="Rango 16">Rango 16</option>
-                  <option value="Rango 20">Rango 20</option>
-                  <option value="Rango 22">Rango 22</option>
-                </select>
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_dos" (blur)="validacionDetallesDos()" />
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_dos" (blur)="validacionDetallesDos()" />
-              </td>
-              <td>
-                <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_dos" (blur)="validacionDetallesDos()" />
-              </td>
-              <td class="text-center">
-                <input type="checkbox" disabled/>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-12" *ngIf="rango_for_dos">
-      <div class="row justify-content-end">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="form-group row">
-            <label class="col-md-4 col-3">Peso Total:</label>
-            <div class="col-md-8 col-9 text-center">
-              <h3>{{total_dos| number : '1.2-2'}} Kg</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12" *ngIf="rango_for_dos">
-      <div class="row justify-content-center">
-        <div class="col-lg-3 col-md-7 col-12">
-          <div class="btn btn-block btn-sm btn-primary">
-            Guardar
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>

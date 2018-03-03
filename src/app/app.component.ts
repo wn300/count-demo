@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Pesos, Planilla } from './modelos/basculas';
 
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +9,7 @@ import { Pesos, Planilla } from './modelos/basculas';
 })
 export class AppComponent {
   public bascula_uno: boolean = true;
+  public print: boolean = false;
   //1  
   public rango_for_uno: boolean = false;
   public disabled_uno: boolean = false;
@@ -232,4 +234,38 @@ export class AppComponent {
     localStorage.setItem("TotalDos", null);
     localStorage.setItem("TotalDos", this.total_dos.toString());
   }
+
+  @ViewChild('pdf') el: ElementRef;
+
+
+  pdfUno(): void {
+    this.print = true;
+    let pdf = new jsPDF('l', 'pt', 'a4');
+    let options = {
+      pagesplit: true
+    };
+    setTimeout(() => {
+      pdf.addHTML(this.el.nativeElement, 40, 40, options, () => {
+        pdf.save("test.pdf");
+        this.print = false;
+      });
+    }, 1000);
+  }
+
+  pdfDos(): void {
+    this.print = true;
+    let pdf = new jsPDF('l', 'pt', 'a4');
+    let options = {
+      pagesplit: true
+    };
+    setTimeout(() => {
+      pdf.addHTML(this.el.nativeElement, 40, 40, options, () => {
+        pdf.save("test.pdf");
+        this.print = false;
+      });
+    }, 1000);
+  }
+
+
+
 }
