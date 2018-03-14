@@ -227,37 +227,83 @@
   <div *ngIf="print" class="row">
     <div class="col-12 text-center">
       <h5 style="color: red">
-          Exportando a PDF...
+        Exportando a PDF...
       </h5>
     </div>
   </div>
   <!-- //1 -->
   <div *ngIf="!print">
+    <div class="row justify-content-end" *ngIf="disabled_uno && bascula_uno">
+      <div class="col-3">
+        <div class="btn btn-warning btn-sm btn-block" (click)="limpiarUno()">
+          Limpiar
+        </div>
+      </div>
+    </div>
     <div class="row" *ngIf="bascula_uno" style="margin-top: 15px">
       <div class="col-12">
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-md-4 col-3">Conductor:</label>
-              <div class="col-md-8 col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+              <label class="col-md-6 col-3">Consecutivo:</label>
+              <div class="col-md-6 col-9">
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="consecutivo_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
                 />
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-2">
+          <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Veh:</label>
-              <div class="col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+              <label class="col-md-6 col-3">Fecha:</label>
+              <div class="col-md-6 col-9">
+                <input type="date" class="form-control form-control-sm" [(ngModel)]="fecha_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
                 />
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-2">
+          <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Temp:</label>
-              <div class="col-9">
+              <label class="col-md-6 col-3">Hora Salida:</label>
+              <div class="col-md-6 col-9">
+                <input type="time" class="form-control form-control-sm" [(ngModel)]="hora_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Cliente:</label>
+              <div class="col-md-6 col-9">
+                <select class="form-control form-control-sm" [(ngModel)]="cliente_uno" [disabled]="disabled_uno" (change)="validacionEncabezadoUno()">
+                  <option value="">Seleccione</option>
+                  <option value="POLLOS SAVICOL S.A.">SAVICOL</option>
+                  <option value="POLLOS ANDINO S.A.">ANDINO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Lugar Destino:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="lugar_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Temperatura Vehiculo:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_vehiculo_uno" [disabled]="disabled_uno"
+                  (blur)="validacionEncabezadoUno()" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Temperatura Prodto:</label>
+              <div class="col-md-6 col-9">
                 <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
                 />
               </div>
@@ -265,13 +311,23 @@
           </div>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Cliente:</label>
-              <div class="col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+              <label class="col-md-6 col-3">Placa Vehiculo:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
                 />
               </div>
             </div>
           </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Conductor:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_uno" [disabled]="disabled_uno" (blur)="validacionEncabezadoUno()"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="col-12" *ngIf="rango_for_uno">
@@ -279,40 +335,105 @@
           <table class="table table-striped table-hover table-sm">
             <thead class="thead-inverse">
               <tr>
-                <th class="text-center">Rango</th>
-                <th class="text-center">Canasta</th>
-                <th class="text-center">Peso</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">N° Tamaño</th>
                 <th class="text-center">Cantidad</th>
+                <th class="text-center">Peso</th>
+                <th class="text-center">Peso Promedio</th>
+                <th class="text-center"># Canastas</th>
+                <th class="text-center">Negativo</th>
                 <th class="text-center">Eliminar</th>
               </tr>
             </thead>
             <tbody *ngIf="objetoPlanilla">
               <tr *ngFor="let peso of objetoPlanilla[0].pesos">
+                <td>{{peso.producto}}</td>
                 <td>{{peso.rango}}</td>
-                <td>{{peso.canasta| number : '1.2-2'}}</td>
-                <td>{{peso.peso| number : '1.2-2'}}</td>
                 <td>{{peso.cantidad| number : '1.2-2'}}</td>
+                <td>{{peso.peso| number : '1.2-2'}}</td>
+                <td>{{peso.peso_promedio| number : '1.2-3'}}</td>
+                <td>{{peso.canasta| number : '1.2-2'}}</td>
+                <td>{{peso.negativo| number : '1.2-2'}}</td>
                 <td class="text-center">
                   <input type="checkbox" (click)="eliminarPesoUno(peso)" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <select class="form-control form-control-sm" [(ngModel)]="rango_uno" (change)="validacionDetallesUno()">
+                  <select class="form-control form-control-sm" [(ngModel)]="producto_uno" (change)="validacionDetallesUno()">
                     <option value="">Seleccione</option>
-                    <option value="Rango 16">Rango 16</option>
-                    <option value="Rango 20">Rango 20</option>
-                    <option value="Rango 22">Rango 22</option>
+                    <option value="POLLO EN CANAL">POLLO EN CANAL</option>
+                    <option value="Menudencia Completa">Menudencia Completa</option>
+                    <option value="Menudencia Incompleta">Menudencia Incompleta</option>
+                    <option value="Higados">Higados</option>
+                    <option value="Patas">Patas</option>
+                    <option value="Pescuezos">Pescuezos</option>
+                    <option value="Corazones">Corazones</option>
+                    <option value="Mollejas">Mollejas</option>
                   </select>
                 </td>
                 <td>
-                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_uno" (blur)="validacionDetallesUno()" />
+                  <div *ngIf="cliente_uno == 'POLLOS SAVICOL S.A.'">
+                    <select class="form-control form-control-sm" [(ngModel)]="rango_uno" (change)="validacionDetallesUno()">
+                      <option value="">Seleccione</option>
+                      <option value="Rango 1">Rango 1</option>
+                      <option value="Rango 2">Rango 2</option>
+                      <option value="Rango 3">Rango 3</option>
+                      <option value="Rango 4">Rango 4</option>
+                      <option value="Rango 5">Rango 5</option>
+                      <option value="Rango 6">Rango 6</option>
+                      <option value="Rango 7">Rango 7</option>
+                      <option value="Rango 8">Rango 8</option>
+                      <option value="Rango 9">Rango 9</option>
+                      <option value="Rango 10">Rango 10</option>
+                      <option value="Rango 11">Rango 11</option>
+                      <option value="Rango 12 Peq">Rango 12 Peq</option>
+                      <option value="Rango 12 Gran">Rango 12 Gran</option>
+                      <option value="Rango 13">Rango 13</option>
+                      <option value="A Granel">A Granel</option>
+                      <option value="Paquete">Paquete</option>
+                    </select>
+                  </div>
+                  <div *ngIf="cliente_uno != 'POLLOS SAVICOL S.A.'">
+                    <select class="form-control form-control-sm" [(ngModel)]="rango_uno" (change)="validacionDetallesUno()">
+                      <option value="">Seleccione</option>
+                      <option value="Rango 2">Rango 2</option>
+                      <option value="Rango 3">Rango 3</option>
+                      <option value="Rango 4">Rango 4</option>
+                      <option value="Rango 5">Rango 5</option>
+                      <option value="Rango 6">Rango 6</option>
+                      <option value="Rango 7">Rango 7</option>
+                      <option value="Rango 8">Rango 8</option>
+                      <option value="Rango 9">Rango 9</option>
+                      <option value="Rango 10">Rango 10</option>
+                      <option value="Rango 11">Rango 11</option>
+                      <option value="Rango 12">Rango 12</option>
+                      <option value="Rango 13">Rango 13</option>
+                      <option value="Rango 14">Rango 14</option>
+                      <option value="Maltrato 14">Maltrato 14</option>
+                      <option value="Maltrato 16">Maltrato 16</option>
+                      <option value="Maltrato 20">Maltrato 20</option>
+                      <option value="A Granel">A Granel</option>
+                      <option value="Paquete">Paquete</option>
+                    </select>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_uno" (blur)="validacionDetallesUno()" disabled
+                  />
                 </td>
                 <td>
                   <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_uno" (blur)="validacionDetallesUno()" />
                 </td>
                 <td>
-                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_uno" (blur)="validacionDetallesUno()" />
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_promedio_uno" (blur)="validacionDetallesUno()"
+                    disabled />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_uno" (blur)="validacionDetallesUno()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="negativo_uno" (blur)="validacionDetallesUno()" />
                 </td>
                 <td class="text-center">
                   <input type="checkbox" disabled/>
@@ -345,31 +466,77 @@
       </div>
     </div>
     <!-- //2 -->
+    <div class="row justify-content-end" *ngIf="disabled_dos && !bascula_uno">
+      <div class="col-3">
+        <div class="btn btn-warning btn-sm btn-block" (click)="limpiarDos()">
+          Limpiar
+        </div>
+      </div>
+    </div>
     <div class="row" *ngIf="!bascula_uno" style="margin-top: 15px">
       <div class="col-12">
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-md-4 col-3">Conductor:</label>
-              <div class="col-md-8 col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+              <label class="col-md-6 col-3">Consecutivo:</label>
+              <div class="col-md-6 col-9">
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="consecutivo_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
                 />
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-2">
+          <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Veh:</label>
-              <div class="col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+              <label class="col-md-6 col-3">Fecha:</label>
+              <div class="col-md-6 col-9">
+                <input type="date" class="form-control form-control-sm" [(ngModel)]="fecha_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
                 />
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-2">
+          <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Temp:</label>
-              <div class="col-9">
+              <label class="col-md-6 col-3">Hora Salida:</label>
+              <div class="col-md-6 col-9">
+                <input type="time" class="form-control form-control-sm" [(ngModel)]="hora_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Cliente:</label>
+              <div class="col-md-6 col-9">
+                <select class="form-control form-control-sm" [(ngModel)]="cliente_dos" [disabled]="disabled_dos" (change)="validacionEncabezadoDos()">
+                  <option value="">Seleccione</option>
+                  <option value="POLLOS SAVICOL S.A.">SAVICOL</option>
+                  <option value="POLLOS ANDINO S.A.">ANDINO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Lugar Destino:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="lugar_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Temperatura Vehiculo:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_vehiculo_dos" [disabled]="disabled_dos"
+                  (blur)="validacionEncabezadoDos()" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Temperatura Prodto:</label>
+              <div class="col-md-6 col-9">
                 <input type="text" class="form-control form-control-sm" [(ngModel)]="temperatura_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
                 />
               </div>
@@ -377,13 +544,23 @@
           </div>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="form-group row">
-              <label class="col-3">Cliente:</label>
-              <div class="col-9">
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="cliente_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+              <label class="col-md-6 col-3">Placa Vehiculo:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="vehiculo_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
                 />
               </div>
             </div>
           </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="form-group row">
+              <label class="col-md-6 col-3">Conductor:</label>
+              <div class="col-md-6 col-9">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="conductor_dos" [disabled]="disabled_dos" (blur)="validacionEncabezadoDos()"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="col-12" *ngIf="rango_for_dos">
@@ -391,40 +568,104 @@
           <table class="table table-striped table-hover table-sm">
             <thead class="thead-inverse">
               <tr>
-                <th class="text-center">Rango</th>
-                <th class="text-center">Canasta</th>
-                <th class="text-center">Peso</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">N° Tamaño</th>
                 <th class="text-center">Cantidad</th>
+                <th class="text-center">Peso</th>
+                <th class="text-center">Peso Promedio</th>
+                <th class="text-center"># Canastas</th>
+                <th class="text-center">Negativo</th>
                 <th class="text-center">Eliminar</th>
               </tr>
             </thead>
             <tbody *ngIf="objetoPlanilla">
               <tr *ngFor="let peso of objetoPlanillaDos[0].pesos">
+                <td>{{peso.producto}}</td>
                 <td>{{peso.rango}}</td>
-                <td>{{peso.canasta| number : '1.2-2'}}</td>
-                <td>{{peso.peso| number : '1.2-2'}}</td>
                 <td>{{peso.cantidad| number : '1.2-2'}}</td>
+                <td>{{peso.peso| number : '1.2-2'}}</td>
+                <td>{{peso.peso_promedio| number : '1.2-3'}}</td>
+                <td>{{peso.canasta| number : '1.2-2'}}</td>
+                <td>{{peso.negativo| number : '1.2-2'}}</td>
                 <td class="text-center">
                   <input type="checkbox" (click)="eliminarPesoDos(peso)" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <select class="form-control form-control-sm" [(ngModel)]="rango_dos" (change)="validacionDetallesDos()">
+                  <select class="form-control form-control-sm" [(ngModel)]="producto_dos" (change)="validacionDetallesDos()">
                     <option value="">Seleccione</option>
-                    <option value="Rango 16">Rango 16</option>
-                    <option value="Rango 20">Rango 20</option>
-                    <option value="Rango 22">Rango 22</option>
+                    <option value="POLLO EN CANAL">POLLO EN CANAL</option>
+                    <option value="Menudencia Completa">Menudencia Completa</option>
+                    <option value="Menudencia Incompleta">Menudencia Incompleta</option>
+                    <option value="Higados">Higados</option>
+                    <option value="Patas">Patas</option>
+                    <option value="Pescuezos">Pescuezos</option>
+                    <option value="Corazones">Corazones</option>
+                    <option value="Mollejas">Mollejas</option>
                   </select>
                 </td>
                 <td>
-                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_dos" (blur)="validacionDetallesDos()" />
+                  <div *ngIf="cliente_dos == 'POLLOS SAVICOL S.A.'">
+                    <select class="form-control form-control-sm" [(ngModel)]="rango_dos" (change)="validacionDetallesDos()">
+                      <option value="">Seleccione</option>
+                      <option value="Rango 1">Rango 1</option>
+                      <option value="Rango 2">Rango 2</option>
+                      <option value="Rango 3">Rango 3</option>
+                      <option value="Rango 4">Rango 4</option>
+                      <option value="Rango 5">Rango 5</option>
+                      <option value="Rango 6">Rango 6</option>
+                      <option value="Rango 7">Rango 7</option>
+                      <option value="Rango 8">Rango 8</option>
+                      <option value="Rango 9">Rango 9</option>
+                      <option value="Rango 10">Rango 10</option>
+                      <option value="Rango 11">Rango 11</option>
+                      <option value="Rango 12 Peq">Rango 12 Peq</option>
+                      <option value="Rango 12 Gran">Rango 12 Gran</option>
+                      <option value="Rango 13">Rango 13</option>
+                      <option value="A Granel">A Granel</option>
+                      <option value="Paquete">Paquete</option>
+                    </select>
+                  </div>
+                  <div *ngIf="cliente_dos != 'POLLOS SAVICOL S.A.'">
+                    <select class="form-control form-control-sm" [(ngModel)]="rango_dos" (change)="validacionDetallesDos()">
+                      <option value="">Seleccione</option>
+                      <option value="Rango 2">Rango 2</option>
+                      <option value="Rango 3">Rango 3</option>
+                      <option value="Rango 4">Rango 4</option>
+                      <option value="Rango 5">Rango 5</option>
+                      <option value="Rango 6">Rango 6</option>
+                      <option value="Rango 7">Rango 7</option>
+                      <option value="Rango 8">Rango 8</option>
+                      <option value="Rango 9">Rango 9</option>
+                      <option value="Rango 10">Rango 10</option>
+                      <option value="Rango 11">Rango 11</option>
+                      <option value="Rango 12">Rango 12</option>
+                      <option value="Rango 13">Rango 13</option>
+                      <option value="Rango 14">Rango 14</option>
+                      <option value="Maltrato 14">Maltrato 14</option>
+                      <option value="Maltrato 16">Maltrato 16</option>
+                      <option value="Maltrato 20">Maltrato 20</option>
+                      <option value="A Granel">A Granel</option>
+                      <option value="Paquete">Paquete</option>
+                    </select>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_dos" (blur)="validacionDetallesDos()" disabled/>
                 </td>
                 <td>
                   <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_dos" (blur)="validacionDetallesDos()" />
                 </td>
                 <td>
-                  <input type="number" class="form-control form-control-sm" [(ngModel)]="cantidad_dos" (blur)="validacionDetallesDos()" />
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="peso_promedio_dos" (blur)="validacionDetallesDos()"
+                    disabled />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="canasta_dos" (blur)="validacionDetallesDos()" />
+                </td>
+                <td>
+                  <input type="number" class="form-control form-control-sm" [(ngModel)]="negativo_dos" (blur)="validacionDetallesDos()" />
                 </td>
                 <td class="text-center">
                   <input type="checkbox" disabled/>
