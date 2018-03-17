@@ -135,10 +135,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 MIT
 MIT
 
-jspdf@1.3.5
-MIT
-MIT
-
 bootstrap@4.0.0-alpha.6
 MIT
 The MIT License (MIT)
